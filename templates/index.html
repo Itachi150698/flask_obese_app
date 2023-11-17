@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Obesity Epidemic Solution</title>
+    <!-- Tailwind CSS CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <!-- Fontawesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+      integrity="sha512-...your-hash..."
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+
+    <!-- Additional CSS and JS files -->
+    <link rel="stylesheet" href="path/to/animate.css" />
+    <script src="path/to/jquery.min.js"></script>
+    <script src="path/to/your-js-file.js"></script>
+
+    <style>
+      /* Smartphones (portrait and landscape) */
+      @media only screen and (max-width: 480px) {
+          /* Your styles for small screens here */
+      }
+      /* Tablets and small laptops */
+      @media only screen and (max-width: 768px) {
+          /* Your styles for tablets here */
+      }
+      /* Large tablets and desktops */
+      @media only screen and (min-width: 769px) {
+          /* Your styles for larger screens here */
+      }
+      /* High-resolution displays (Retina) */
+      @media only screen and (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+          /* Your styles for high-resolution displays here */
+      }
+      /* Landscape orientation for tablets and similar devices */
+      @media screen and (max-device-width: 1024px) and (orientation: landscape) {
+          /* Your styles for landscape orientation here */
+      }
+      /* Print styles (for print CSS) */
+      @media print {
+          /* Your styles for printing here */
+      }
+                                    
+
+      @import url("https://fonts.googleapis.com/css?family=DM+Sans:500,700&display=swap");
+
+      .nav {
+        display: inline-flex;
+        position: relative;
+        overflow: hidden;
+        max-width: 100%;
+        background-color: #fff;
+        padding: 0 20px;
+        border-radius: 40px;
+        box-shadow: 0 10px 40px rgba(159, 162, 177, 0.8);
+      }
+
+      .nav-item {
+        color: #83818c;
+        padding: 20px;
+        text-decoration: none;
+        transition: 0.3s;
+        margin: 0 6px;
+        z-index: 1;
+        font-family: "DM Sans", sans-serif;
+        font-weight: 500;
+        position: relative;
+      }
+      .nav-item:before {
+        content: "";
+        position: absolute;
+        bottom: -6px;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        background-color: #dfe2ea;
+        border-radius: 8px 8px 0 0;
+        opacity: 0;
+        transition: 0.3s;
+      }
+
+      .nav-item:not(.is-active):hover:before {
+        opacity: 1;
+        bottom: 0;
+      }
+
+      .nav-item:not(.is-active):hover {
+        color: #333;
+      }
+
+      .nav-indicator {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 4px;
+        transition: 0.4s;
+        height: 5px;
+        z-index: 1;
+        border-radius: 8px 8px 0 0;
+      }
+
+      @media screen and (min-width: 768px) {
+        .nav {
+          overflow: auto;
+        }
+      }
+
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+      <!-- body {
+        font-family: Arial, sans-serif;
+        <!-- background-image: url("https://img.freepik.com/free-photo/blue-flower-close-up-nature-organic-pattern-generative-ai_188544-12650.jpg?w=2000&t=st=1698823361~exp=1698823961~hmac=5d0a0413bf64527415fcf9bffdbc6d5a367711795eb0891685f119464c4562a0"); 
+        background-attachment: fixed;
+        background-size: 100% 100%;
+        backdrop-filter: blur(10px);
+      } -->
+
+      <!--Social Links-- > * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      *:focus,
+      *:active {
+        outline: none !important;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .wrapper {
+        display: inline-flex;
+        list-style: none;
+      }
+
+      .wrapper .icon {
+        position: relative;
+        background: #ffffff;
+        border-radius: 50%;
+        padding: 15px;
+        margin: 10px;
+        width: 50px;
+        height: 50px;
+        font-size: 18px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      }
+
+      .wrapper .tooltip {
+        position: absolute;
+        top: 0;
+        font-size: 14px;
+        background: #ffffff;
+        color: #ffffff;
+        padding: 5px 8px;
+        border-radius: 5px;
+        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      }
+
+      .wrapper .tooltip::before {
+        position: absolute;
+        content: "";
+        height: 8px;
+        width: 8px;
+        background: #ffffff;
+        bottom: -3px;
+        left: 50%;
+        transform: translate(-50%) rotate(45deg);
+        transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      }
+
+      .wrapper .icon:hover .tooltip {
+        top: -45px;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
+
+      .wrapper .icon:hover span,
+      .wrapper .icon:hover .tooltip {
+        text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.1);
+      }
+
+      .wrapper .facebook:hover,
+      .wrapper .facebook:hover .tooltip,
+      .wrapper .facebook:hover .tooltip::before {
+        background: #1877f2;
+        color: #ffffff;
+      }
+
+      .wrapper .twitter:hover,
+      .wrapper .twitter:hover .tooltip,
+      .wrapper .twitter:hover .tooltip::before {
+        background: #1da1f2;
+        color: #ffffff;
+      }
+
+      .wrapper .instagram:hover,
+      .wrapper .instagram:hover .tooltip,
+      .wrapper .instagram:hover .tooltip::before {
+        background: #e4405f;
+        color: #ffffff;
+      }
+
+      .wrapper .github:hover,
+      .wrapper .github:hover .tooltip,
+      .wrapper .github:hover .tooltip::before {
+        background: #333333;
+        color: #ffffff;
+      }
+
+      .wrapper .youtube:hover,
+      .wrapper .youtube:hover .tooltip,
+      .wrapper .youtube:hover .tooltip::before {
+        background: #cd201f;
+        color: #ffffff;
+      }
+
+      /* -- YouTube Link Styles -- */
+
+      #source-link {
+        top: 60px;
+      }
+
+      #source-link > i {
+        color: rgb(94, 106, 210);
+      }
+
+      #yt-link {
+        top: 10px;
+      }
+
+      #yt-link > i {
+        color: rgb(219, 31, 106);
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="bg-gray-900 text-white py-4 px-6">
+      <!-- Logo -->
+      <div class="flex items-center justify-center">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJl2hN00XqtqgGbMLIR-YzxIvUPCn_5et_oA&usqp=CAU"
+          alt="Logo"
+          class="w-8 h-8 mr-2"
+        />
+        <h1 class="text-xl font-bold">Obesity Epidemic Solution</h1>
+      </div>
+      <!-- Navigation Menu -->
+      <nav class="mt-4 flex justify-center">
+        <a href="/" class="nav-item is-active">Home</a>
+        <a href="/about" class="nav-item">About Us</a>
+        <a href="/help" class="nav-item">Help</a>
+       <!-- <a href="/login" class="nav-item">Login</a>
+        <a href="/signup" class="nav-item">Sign Up</a> -->
+        <a href="/dashboard" class="nav-item">Dashboard</a>
+        <span class="nav-indicator"></span>
+      </nav>
+      <script>
+        const indicator = document.querySelector(".nav-indicator");
+        const items = document.querySelectorAll(".nav-item");
+
+        function handleIndicator(el) {
+          items.forEach((item) => {
+            item.classList.remove("is-active");
+            item.removeAttribute("style");
+          });
+
+          indicator.style.width = `${el.offsetWidth}px`;
+          indicator.style.left = `${el.offsetLeft}px`;
+          indicator.style.backgroundColor = el.getAttribute("active-color");
+
+          el.classList.add("is-active");
+          el.style.color = el.getAttribute("active-color");
+        }
+
+        items.forEach((item, index) => {
+          item.addEventListener("click", (e) => {
+            handleIndicator(e.target);
+          });
+          item.classList.contains("is-active") && handleIndicator(item);
+        });
+      </script>
+    </header>
+
+    <section
+      class="hero bg-cover bg-center"
+      style="
+        background-image: url('https://source.unsplash.com/featured/1280x720/?obesity');
+      "
+    >
+      <div
+        class="h-screen flex flex-col justify-center items-center text-center text-white"
+      >
+        <h1 class="text-4xl font-bold mb-8">
+          Welcome to Obesity Epidemic Solution
+        </h1>
+        <a
+          href="/help"
+          class="bg-blue-500 hover:bg-blue-600 py-3 px-6 rounded text-white font-bold"
+          >Get Started</a
+        >
+      </div>
+    </section>
+
+    <section class="features py-16">
+      <div class="container mx-auto">
+        <div class="flex flex-wrap justify-center gap-8">
+          <!-- Feature Card 1 -->
+          <div class="w-full md:w-1/3">
+            <div class="p-4 bg-white shadow rounded">
+              <i class="fas fa-heartbeat fa-3x text-blue-500 mx-auto"></i>
+              <h2 class="mt-4 text-xl font-semibold text-gray-800">
+                Health Assessments
+              </h2>
+              <p class="mt-2 text-gray-600">
+                Stay informed about your health with comprehensive assessments
+                and personalized reports.
+              </p>
+              <a
+                href="#"
+                class="mt-6 inline-block px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors duration-300 ease-in-out"
+                >Learn More</a
+              >
+            </div>
+          </div>
+          <!-- Feature Card 2 -->
+          <div class="w-full md:w-1/3">
+            <div class="p-4 bg-white shadow rounded">
+              <i class="fas fa-utensils fa-3x text-blue-500 mx-auto"></i>
+              <h2 class="mt-4 text-xl font-semibold text-gray-800">
+                Nutrition Guidance
+              </h2>
+              <p class="mt-2 text-gray-600">
+                Receive expert advice on balanced diets, healthy eating habits,
+                and portion control.
+              </p>
+              <a
+                href="#"
+                class="mt-6 inline-block px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors duration-300 ease-in-out"
+                >Learn More</a
+              >
+            </div>
+          </div>
+          <!-- Feature Card 3 -->
+          <div class="w-full md:w-1/3">
+            <div class="p-4 bg-white shadow rounded">
+              <i class="fas fa-dumbbell fa-3x text-blue-500 mx-auto"></i>
+              <h2 class="mt-4 text-xl font-semibold text-gray-800">
+                Fitness Programs
+              </h2>
+              <p class="mt-2 text-gray-600">
+                Discover personalized exercise routines and fitness programs to
+                improve overall wellbeing.
+              </p>
+              <a
+                href="#"
+                class="mt-6 inline-block px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors duration-300 ease-in-out"
+                >Learn More</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div
+      class="container"
+      style="
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: rgba(210, 210, 180);
+        color: white;
+      "
+    >
+      <h2 style="text-align: center">Obesity Assessment</h2>
+      <form id="obesityAssessment">
+        <label for="weight" style="display: block; margin-top: 10px"
+          >Weight (in kilograms):</label
+        >
+        <input
+          type="number"
+          id="weight"
+          name="weight"
+          required
+          style="
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            color: #000;
+          "
+        />
+
+        <label for="height" style="display: block; margin-top: 10px"
+          >Height (in centimeters):</label
+        >
+        <input
+          type="number"
+          id="height"
+          name="height"
+          required
+          style="
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            color: #000;
+          "
+        />
+
+        <label for="result" style="display: block; margin-top: 10px"
+          >Assessment Result:</label
+        >
+        <div id="result"></div>
+
+        <button
+          type="button"
+          onclick="calculateBMI()"
+          style="
+            width: 100%;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+          "
+        >
+          Calculate BMI
+        </button>
+
+        <p>
+          <a class="" href="/login" role="button"
+            >Click Here For Diseases Assessment</a
+          >
+        </p>
+      </form>
+    </div>
+
+    <script>
+      function calculateBMI() {
+        const weight = parseFloat(document.getElementById("weight").value);
+        const height =
+          parseFloat(document.getElementById("height").value) / 100; // Convert height to meters
+        const bmi = weight / (height * height);
+        let result = "";
+
+        if (bmi < 18.5) {
+          result = "Underweight";
+        } else if (bmi < 24.9) {
+          result = "Normal Weight";
+        } else if (bmi < 29.9) {
+          result = "Overweight";
+        } else {
+          result = "Obese";
+        }
+
+        document.getElementById("result").textContent = `BMI: ${bmi.toFixed(
+          2
+        )} - ${result}`;
+      }
+    </script>
+
+    <section class="individual-feature py-16">
+      <!-- Individual Feature 1 -->
+      <div
+        class="bg-cover bg-right py-16"
+        style="
+          background-image: url('https://source.unsplash.com/1280x720/?healthy');
+        "
+      >
+        <div class="container mx-auto">
+          <div
+            class="flex flex-col md:flex-row md:items-center justify-between mx-8"
+          >
+            <div class="md:w-1/2 text-center md:text-left">
+              <h2 class="text-3xl font-semibold text-white">
+                Personalized Health Assessments
+              </h2>
+              <p class="mt-4 text-xl text-white">
+                Our comprehensive health assessments help you understand your
+                current health status and identify risk factors associated with
+                obesity.
+              </p>
+              <a
+                href="#"
+                class="mt-6 inline-block px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors duration-300 ease-in-out"
+                >View Details</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Individual Feature 2 -->
+      <div
+        class="bg-cover bg-left py-16"
+        style="
+          background-image: url('https://source.unsplash.com/1280x720/?nutrition');
+        "
+      >
+        <div class="container mx-auto">
+          <div
+            class="flex flex-col md:flex-row md:items-center justify-between mx-8"
+          >
+            <div class="md:w-1/2 text-center md:text-left">
+              <h2 class="text-3xl font-semibold text-white">
+                Expert Nutrition Guidance
+              </h2>
+              <p class="mt-4 text-xl text-white">
+                Our team of nutritionists and dietitians provide personalized
+                guidance to help you develop healthy eating habits and make
+                informed food choices.
+              </p>
+              <a
+                href="#"
+                class="mt-6 inline-block px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors duration-300 ease-in-out"
+                >View Details</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Individual Feature 3 -->
+      <div
+        class="bg-cover bg-right py-16"
+        style="
+          background-image: url('https://source.unsplash.com/1280x720/?fitness');
+        "
+      >
+        <div class="container mx-auto">
+          <div
+            class="flex flex-col md:flex-row md:items-center justify-between mx-8"
+          >
+            <div class="md:w-1/2 text-center md:text-left">
+              <h2 class="text-3xl font-semibold text-white">
+                Tailored Fitness Programs
+              </h2>
+              <p class="mt-4 text-xl text-white">
+                Our certified trainers design personalized fitness programs
+                based on your goals and preferences to help you achieve optimal
+                fitness.
+              </p>
+              <a
+                href="#"
+                class="mt-6 inline-block px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors duration-300 ease-in-out"
+                >View Details</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="testimonials py-12">
+      <div class="container mx-auto flex justify-center items-center">
+        <div class="flex flex-wrap">
+          <div class="w-full md:w-1/2 lg:w-1/2 px-4 mb-8">
+            <div class="testimonial bg-white shadow-lg rounded-lg p-6">
+              <i class="fas fa-quote-left text-3xl text-gray-500"></i>
+              <p class="text-xl mt-4">
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+              </p>
+              <p class="text-gray-700 mt-4">- John Doe, CEO</p>
+            </div>
+          </div>
+          <div class="w-full md:w-1/2 lg:w-1/2 px-4 mb-8">
+            <div class="testimonial bg-white shadow-lg rounded-lg p-6">
+              <i class="fas fa-quote-left text-3xl text-gray-500"></i>
+              <p class="text-xl mt-4">
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+              </p>
+              <p class="text-gray-700 mt-4">- Jane Doe, CTO</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="blog py-12">
+      <div class="container mx-auto">
+        <h2 class="text-3xl font-bold text-center">Recent Blog Posts</h2>
+        <div class="flex flex-wrap justify-center items-stretch mt-8">
+          <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 px-4 py-6">
+            <div class="blog-post bg-white shadow-lg rounded-lg p-6">
+              <h3 class="text-xl font-bold">Blog Post 1</h3>
+              <p class="text-gray-700 mt-4">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
+                varius enim quis lorem ultrices vestibulum. Quisque vehicula.
+              </p>
+              <a href="#" class="mt-4 text-blue-500 font-bold hover:underline"
+                >Read More</a
+              >
+            </div>
+          </div>
+          <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 px-4 py-6">
+            <div class="blog-post bg-white shadow-lg rounded-lg p-6">
+              <h3 class="text-xl font-bold">Blog Post 2</h3>
+              <p class="text-gray-700 mt-4">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
+                varius enim quis lorem ultrices vestibulum. Quisque vehicula.
+              </p>
+              <a href="#" class="mt-4 text-blue-500 font-bold hover:underline"
+                >Read More</a
+              >
+            </div>
+          </div>
+          <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 px-4 py-6">
+            <div class="blog-post bg-white shadow-lg rounded-lg p-6">
+              <h3 class="text-xl font-bold">Blog Post 3</h3>
+              <p class="text-gray-700 mt-4">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
+                varius enim quis lorem ultrices vestibulum. Quisque vehicula.
+              </p>
+              <a href="#" class="mt-4 text-blue-500 font-bold hover:underline"
+                >Read More</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq py-12">
+      <div class="container mx-auto">
+        <h2 class="text-3xl font-bold text-center">
+          Frequently Asked Questions
+        </h2>
+        <div class="mt-8">
+          <div
+            class="faq-item py-4 flex justify-between items-center border-t border-gray-300"
+          >
+            <h3 class="font-bold">Question 1?</h3>
+            <i class="fas fa-plus fa-xs text-gray-400"></i>
+          </div>
+          <div
+            class="faq-item py-4 flex justify-between items-center border-t border-gray-300"
+          >
+            <h3 class="font-bold">Question 2?</h3>
+            <i class="fas fa-plus fa-xs text-gray-400"></i>
+          </div>
+          <div
+            class="faq-item py-4 flex justify-between items-center border-t border-gray-300"
+          >
+            <h3 class="font-bold">Question 3?</h3>
+            <i class="fas fa-plus fa-xs text-gray-400"></i>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="team py-12">
+      <div class="container mx-auto">
+        <h2 class="text-3xl font-bold text-center">Our Team</h2>
+        <div class="flex flex-wrap justify-center items-stretch mt-8">
+          <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 px-4 py-6">
+            <div
+              class="team-member bg-white shadow-lg rounded-lg p-6 flex flex-col justify-center items-center"
+            >
+              <img
+                src="path/to/team-member1.png"
+                alt="Team Member 1"
+                class="w-32 h-32 rounded-full mb-4"
+              />
+              <h3 class="text-xl font-bold">John Doe</h3>
+              <p class="text-gray-700">CEO</p>
+              <div class="mt-4">
+                <a href="#" class="text-blue-500 hover:text-blue-600 mr-2">
+                  <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="text-blue-500 hover:text-blue-600">
+                  <i class="fab fa-linkedin-in"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 px-4 py-6">
+            <div
+              class="team-member bg-white shadow-lg rounded-lg p-6 flex flex-col justify-center items-center"
+            >
+              <img
+                src="path/to/team-member2.png"
+                alt="Team Member 2"
+                class="w-32 h-32 rounded-full mb-4"
+              />
+              <h3 class="text-xl font-bold">Jane Doe</h3>
+              <p class="text-gray-700">CTO</p>
+              <div class="mt-4">
+                <a href="#" class="text-blue-500 hover:text-blue-600 mr-2">
+                  <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="text-blue-500 hover:text-blue-600">
+                  <i class="fab fa-linkedin-in"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="newsletter py-12 bg-gray-200">
+      <div class="container mx-auto flex justify-center items-center">
+        <div
+          class="newsletter-form bg-white shadow-lg rounded-lg p-6 flex flex-col justify-center items-center"
+        >
+          <h3 class="text-xl font-bold mb-4">Subscribe to Our Newsletter</h3>
+          <form class="flex justify-center items-center">
+            <input
+              type="email"
+              class="bg-gray-100 rounded-l-lg py-3 px-4"
+              placeholder="Enter your email address"
+            />
+            <button
+              type="submit"
+              class="bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-r-lg py-3 px-6"
+            >
+              Subscribe
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact py-12">
+      <div class="container mx-auto">
+        <h2 class="text-3xl font-bold text-center">Contact Us</h2>
+        <div class="flex flex-wrap justify-center items-center mt-8">
+          <div class="w-full sm:w-1/2 md:w-1/2 lg:w-1/2 px-4">
+            <div class="contact-form bg-white shadow-lg rounded-lg p-6">
+              <form>
+                <div class="mb-4">
+                  <label for="name" class="font-bold">Name</label>
+                  <input
+                    type="text"
+                    id="name"
+                    class="bg-gray-100 rounded-lg py-3 px-4 mt-2 w-full"
+                    placeholder="Enter your name"
+                    required
+                  />
+                </div>
+                <div class="mb-4">
+                  <label for="email" class="font-bold">Email</label>
+                  <input
+                    type="email"
+                    id="email"
+                    class="bg-gray-100 rounded-lg py-3 px-4 mt-2 w-full"
+                    placeholder="Enter your email address"
+                    required
+                  />
+                </div>
+                <div class="mb-4">
+                  <label for="message" class="font-bold">Message</label>
+                  <textarea
+                    id="message"
+                    rows="4"
+                    class="bg-gray-100 rounded-lg py-3 px-4 mt-2 w-full"
+                    placeholder="Enter your message"
+                    required
+                  ></textarea>
+                </div>
+                <button
+                  type="submit"
+                  class="bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-lg py-3 px-6"
+                >
+                  Send Message
+                </button>
+              </form>
+            </div>
+          </div>
+          <div class="w-full sm:w-1/2 md:w-1/2 lg:w-1/2 px-4">
+            <div class="map-container bg-gray-400 rounded-lg h-80">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15084.93157704453!2d72.8794597!3d19.0534953!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c9d64f276d21%3A0x61fc2f00382682f4!2sNSTI%20Mumbai!5e0!3m2!1sen!2sin!4v1699111902388!5m2!1sen!2sin"
+                width="600"
+                height="450"
+                style="border: 0"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="bg-gray-900 text-white">
+      <div class="container-fluid padding">
+        <div class="row text-center">
+          <div class="col-md-4">
+            <hr class="light" />
+            <h5>Contact Details</h5>
+            <hr class="light" />
+            <p>+91 9264990599</p>
+            <p>sapnasahu32000@gmail.com</p>
+            <p>Sion Chunabhatti</p>
+            <p>Mumbai, Maharashtra, 400022</p>
+          </div>
+          <div class="col-md-4">
+            <hr class="light" />
+            <h5>Our Hours</h5>
+            <hr class="light" />
+            <p>Monday: 9pm-5pm</p>
+            <p>Saturday:10am-4pm</p>
+            <p>Sunday: Closed</p>
+          </div>
+          <div class="col-md-4">
+            <hr class="light" />
+            <h5>Service Areas</h5>
+            <hr class="light" />
+            <p>Mumbai, Maharashtra</p>
+            <p>Sion Chunnabhatti</p>
+            <p>Parel</p>
+            <p>Maharashtra</p>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid padding">
+        <div class="row text-center padding">
+          <div class="col-12" style="padding: 4%">
+            <h1 style="color: white">Connect</h1>
+          </div>
+          <div class="col-12 social padding">
+            <ul class="wrapper">
+              <li class="icon facebook">
+                <span class="tooltip">Facebook</span>
+                <span
+                  ><i class="fab fa-facebook-f" style="color: #000"></i
+                ></span>
+              </li>
+              <li class="icon twitter">
+                <span class="tooltip">Twitter</span>
+                <span
+                  ><i class="fab fa-twitter" style="color: #1da1f2"></i
+                ></span>
+              </li>
+              <li class="icon instagram">
+                <span class="tooltip">Instagram</span>
+                <span
+                  ><i class="fab fa-instagram" style="color: #000"></i
+                ></span>
+              </li>
+              <li class="icon github">
+                <span class="tooltip">Github</span>
+                <span><i class="fab fa-github" style="color: #000"></i></span>
+              </li>
+              <li class="icon youtube">
+                <span class="tooltip">Youtube</span>
+                <span
+                  ><i class="fab fa-youtube" style="color: #cd201f"></i
+                ></span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <hr class="light" />
+        <a>© 2022 Obesity Epidemic Solution. All rights reserved.</a>
+      </div>
+    </footer>
+
+    <!-- CDN links for necessary libraries -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/js/all.min.js"
+      integrity="sha512-...your-hash..."
+    ></script>
+    <script src="path/to/animate.min.js"></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"
+      async
+      defer
+    ></script>
+  </body>
+</html>
